@@ -1,4 +1,4 @@
-package MYGOOS3;
+package MYGOOS3.unit;
 
 import org.junit.Test;
 
