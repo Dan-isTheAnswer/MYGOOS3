@@ -45,11 +45,10 @@ public class Main {
     }
 
     private static XMPPConnection connection(String hostname, String username, String password) throws XMPPException {
-        return null;
-        // XMPPConnection connection = new XMPPConnection(hostname);
-        // connection.connect();
-        // connection.login(username, password, AUCTION_RESOURCE);
-        // return connection;
+        XMPPConnection connection = new XMPPConnection(hostname);
+        connection.connect();
+        connection.login(username, password, AUCTION_RESOURCE);
+        return connection;
     }
 
     private void joinAuction(XMPPConnection connection, String itemId) throws XMPPException {
