@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 
     public static final String SNIPER_STATUS_NAME = "sniper status";

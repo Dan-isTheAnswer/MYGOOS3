@@ -6,7 +6,7 @@ import MYGOOS3.Main;
 
 public class ApplicationRunner {
     // used in endtoendtest.java later 
-    // public static final String SNIPER_XMPP_ID = "sniper@localhost/Auction";
+    public static final String SNIPER_XMPP_ID = "sniper@localhost/Auction";
 
     public static final String SNIPER_ID = "sniper";
     public static final String SNIPER_PWD = "sniper";
@@ -42,4 +42,8 @@ public class ApplicationRunner {
             driver.dispose();
         }
     }
+
+	public void hasShownSniperIsBidding() {
+        driver.showsSniperStatus(Main.STATUS_BIDDING);
+	}
 }

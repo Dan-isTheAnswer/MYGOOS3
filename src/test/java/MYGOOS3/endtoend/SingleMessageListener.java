@@ -1,12 +1,12 @@
 package MYGOOS3.endtoend;
 
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasProperty;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import org.hamcrest.Matcher;
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.packet.Message;
@@ -22,9 +22,9 @@ public class SingleMessageListener implements MessageListener {
 
     // for the sake of testing when failed. 
     // used in FakeAuctionServer.java
-    public void receivesAMessage() throws InterruptedException {
+    public void receivesAMessage(Matcher<? super String> messageMatcher) throws InterruptedException {
         final Message message = messages.poll(5, TimeUnit.SECONDS);
-        assertThat("Message", message, is(notNullValue()));
+        assertThat("Message", message, hasProperty("body", messageMatcher));
     }
 
 }
