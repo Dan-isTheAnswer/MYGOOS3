@@ -9,6 +9,8 @@ import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
+import MYGOOS3.myannotations.TellMe;
+
 public class FakeAuctionServer {
 
 	public static final String ITEM_ID_AS_LOGIN = "auction-%s";
@@ -60,6 +62,7 @@ public class FakeAuctionServer {
 		currentChat.sendMessage(String.format("SOLVersion: 1.1; Event: PRICE; CurrentPrice: %d; Increment: %d; Bidder: %s; ", price, increment, bidder));
 	}
 
+	@TellMe
 	private void receivesAMessageMatching(String sniperId, Matcher<? super String> messageMatcher)
 			throws InterruptedException {
 		messageListener.receivesAMessage(messageMatcher);

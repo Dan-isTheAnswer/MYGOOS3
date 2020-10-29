@@ -11,6 +11,8 @@ import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.packet.Message;
 
+import MYGOOS3.myannotations.TellMe;
+
 public class SingleMessageListener implements MessageListener {
 
     private final ArrayBlockingQueue<Message> messages = new ArrayBlockingQueue<>(1);
@@ -20,8 +22,7 @@ public class SingleMessageListener implements MessageListener {
         messages.add(message);
     }
 
-    // for the sake of testing when failed. 
-    // used in FakeAuctionServer.java
+    @TellMe
     public void receivesAMessage(Matcher<? super String> messageMatcher) throws InterruptedException {
         final Message message = messages.poll(5, TimeUnit.SECONDS);
         assertThat("Message", message, hasProperty("body", messageMatcher));

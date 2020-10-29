@@ -6,6 +6,7 @@ import com.objogate.wl.swing.driver.JLabelDriver;
 import com.objogate.wl.swing.gesture.GesturePerformer;
 
 import MYGOOS3.Main;
+import MYGOOS3.myannotations.TellMe;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 
@@ -18,6 +19,7 @@ public class AuctionSniperDriver extends JFrameDriver {
                 new AWTEventQueueProber(timeoutMillis, 100));
     }
 
+    @TellMe
     @SuppressWarnings("unchecked")
     public void showsSniperStatus(String statusText) {
         new JLabelDriver(this, named(Main.SNIPER_STATUS_NAME)).hasText(equalTo(statusText));
