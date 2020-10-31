@@ -81,5 +81,3 @@ public class AuctionSniperTest {
         sniper.auctionClosed();
     }
 }
-
-// States??
