@@ -9,6 +9,7 @@ import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 
+import MYGOOS3.Main;
 import MYGOOS3.myannotations.TellMe;
 
 public class FakeAuctionServer {
@@ -39,11 +40,11 @@ public class FakeAuctionServer {
 	}
 
 	public void hasReceivedJoinRequestFromSniper(String sniperId) throws InterruptedException {
-		receivesAMessageMatching(sniperId, equalTo(JOIN_COMMAND_FORMAT));
+		receivesAMessageMatching(sniperId, equalTo(Main.JOIN_COMMAND_FORMAT));
 	}
 	
-	public void hasReceivedBid(int bid, String sniperId) {
-		receivesAMessageMatching(sniperId, equalTo(String.format(BID_COMMAND_FORMAT, bid)));
+	public void hasReceivedBid(int bid, String sniperId) throws InterruptedException {
+		receivesAMessageMatching(sniperId, equalTo(String.format(Main.BID_COMMAND_FORMAT, bid)));
 	}
 
 	public void announceClosed() throws XMPPException {
