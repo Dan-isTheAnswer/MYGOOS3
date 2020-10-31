@@ -3,6 +3,7 @@ package MYGOOS3.endtoend;
 import static MYGOOS3.endtoend.FakeAuctionServer.XMPP_HOSTNAME;
 
 import MYGOOS3.Main;
+import MYGOOS3.MainWindow;
 
 public class ApplicationRunner {
     // used in endtoendtest.java later 
@@ -29,13 +30,17 @@ public class ApplicationRunner {
         thread.setDaemon(true);
         thread.start();
         driver = new AuctionSniperDriver(1000);
-        driver.showsSniperStatus(Main.STATUS_JOINING);
+        driver.showsSniperStatus(MainWindow.STATUS_JOINING);
 
 	}
 
 	public void showsSniperHasLostAuction() {
-        driver.showsSniperStatus(Main.STATUS_LOST);
-	}
+        driver.showsSniperStatus(MainWindow.STATUS_LOST);
+    }
+    
+    public void showsSniperHasWonAuction() {
+        driver.showsSniperStatus(MainWindow.STATUS_WON);
+    }
 
     public void stop() {
         if (driver != null) {
@@ -44,6 +49,11 @@ public class ApplicationRunner {
     }
 
 	public void hasShownSniperIsBidding() {
-        driver.showsSniperStatus(Main.STATUS_BIDDING);
-	}
+        driver.showsSniperStatus(MainWindow.STATUS_BIDDING);
+    }
+    
+    public void hasShownSniperIsWinning() {
+        driver.showsSniperStatus(MainWindow.STATUS_WINNING);
+    }
+
 }

@@ -1,5 +1,7 @@
 package MYGOOS3;
 
+import static MYGOOS3.MainWindow.*;
+
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.SwingUtilities;
@@ -12,7 +14,7 @@ import org.jivesoftware.smack.packet.Message;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Main implements AuctionEventListener {
+public class Main {
     private static final int ARG_HOSTNAME = 0; // Who is the auction's host?
     private static final int ARG_USERNAME = 1;
     private static final int ARG_PASSWORD = 2;
@@ -27,11 +29,6 @@ public class Main implements AuctionEventListener {
     private MainWindow ui;
 
     private Chat notToBeGCd;
-
-    // where are these used in??
-    public static final String STATUS_JOINING = "joining";
-    public static final String STATUS_LOST = "Lost";
-	public static final String STATUS_BIDDING = "Bidding";
 
     public static final String MAIN_WINDOW_NAME = "Auction Sniper Main";
     public static final String SNIPER_STATUS_NAME = "sniper status";
@@ -58,12 +55,14 @@ public class Main implements AuctionEventListener {
     }
 
     private void joinAuction(XMPPConnection connection, String itemId) throws XMPPException {
-        // final Chat chat = connection.getChatManager().createChat(auctionId(itemId, connection), (c, message) -> SwingUtilities.invokeLater(() -> ui.showStatus(Main.STATUS_LOST)));
         disconnectWhenUICloses(connection);
-        final Chat chat = connection.getChatManager().createChat(auctionId(itemId, connection), new AuctionMessageTranslator(this));
-        // instead of MainWindow.STATUS_LOST;
+        final Chat chat = connection.getChatManager().createChat(auctionId(itemId, connection), null);
         notToBeGCd = chat;
         chat.sendMessage(JOIN_COMMAND_FORMAT);
+
+        Auction auction = new XMPPAuction(chat);
+        chat.addMessageListener(new AuctionMessageTranslator(connection.getUser(), new AuctionSniper(auction, new SniperStateDisplayer())));
+        auction.join();
     }
 
     private void disconnectWhenUICloses(final XMPPConnection connection) {
@@ -80,9 +79,31 @@ public class Main implements AuctionEventListener {
         return String.format(AUCTION_ID_FORMAT, itemId, connection.getServiceName());
     }
 
-    @Override
-    public void auctionClosed() {
-        SwingUtilities.invokeLater(() -> ui.showStatus(STATUS_LOST));
+    private class SniperStateDisplayer implements SniperListener {
+
+        @Override
+        public void sniperLost() {
+            showStatus(STATUS_LOST);
+        }
+
+        @Override
+        public void sniperBidding() {
+            showStatus(STATUS_BIDDING);
+        }
+
+        @Override
+        public void sniperWinning() {
+            showStatus(STATUS_WINNING);
+        }
+
+        @Override
+        public void sniperWon() {
+            showStatus(STATUS_WON);
+        }
+
+        private void showStatus(final String status) {
+            SwingUtilities.invokeLater(() -> ui.showStatus(status));
+        }
     }
 
 }
