@@ -1,7 +1,7 @@
 package MYGOOS3.endtoend;
 
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.CoreMatchers.*;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -25,7 +25,9 @@ public class SingleMessageListener implements MessageListener {
     @TellMe
     public void receivesAMessage(Matcher<? super String> messageMatcher) throws InterruptedException {
         final Message message = messages.poll(5, TimeUnit.SECONDS);
-        assertThat("Message", message, hasProperty("body", messageMatcher));
+        // assertThat("Message", message, hasProperty("body", messageMatcher));
+        assertThat("Message", message, is(notNullValue()));
+        assertThat(message.getBody(), messageMatcher);
     }
 
 }

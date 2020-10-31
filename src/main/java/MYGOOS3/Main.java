@@ -18,6 +18,8 @@ public class Main {
     public static final String AUCTION_RESOURCE = "Auction";
     public static final String ITEM_ID_AS_LOGIN = "auction-%s";
     public static final String AUCTION_ID_FORMAT = ITEM_ID_AS_LOGIN + "@%s/" + AUCTION_RESOURCE;
+	public static final Object JOIN_COMMAND_FORMAT = "";
+	public static final String BID_COMMAND_FORMAT = "";
 
     private MainWindow ui;
 
