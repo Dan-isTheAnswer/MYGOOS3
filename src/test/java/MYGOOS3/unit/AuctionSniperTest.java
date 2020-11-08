@@ -67,7 +67,8 @@ public class AuctionSniperTest {
         sniper.currentPrice(123, 45, FromSniper);
     }
 
-    @Test void reportsWonIfAuctionClosesWhenWinning() {
+    @Test 
+    public void reportsWonIfAuctionClosesWhenWinning() {
         context.checking(new Expectations() {{
             ignoring(auction);
             allowing(sniperListener).sniperWinning();

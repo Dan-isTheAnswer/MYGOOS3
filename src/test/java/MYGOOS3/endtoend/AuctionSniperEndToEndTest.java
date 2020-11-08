@@ -2,6 +2,7 @@ package MYGOOS3.endtoend;
 
 import org.jivesoftware.smack.XMPPException;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class AuctionSniperEndToEndTest {
@@ -29,7 +30,7 @@ public class AuctionSniperEndToEndTest {
         auction.hasReceivedJoinRequestFromSniper(ApplicationRunner.SNIPER_XMPP_ID);
 
         auction.reportPrice(1000, 98, "other bidder");
-        application.hasShownSniperIsBidding();
+        application.hasShownSniperIsBidding(); // Check that its label text is "Bidding", but "Joining"
 
         auction.hasReceivedBid(1098, ApplicationRunner.SNIPER_XMPP_ID);
 
@@ -37,6 +38,7 @@ public class AuctionSniperEndToEndTest {
         application.showsSniperHasLostAuction();
     }
 
+    @Ignore
     @Test 
     public void sniperWinsAnAuctionByBiddingHigher() throws InterruptedException, XMPPException {
         auction.startSellingItem();
