@@ -15,8 +15,8 @@ public class AuctionSniperEndToEndTest {
 
         auction.startSellingItem();
         application.startBiddingIn(auction);
-        auction.hasReceivedJoinRequestFromSniper(ApplicationRunner.SNIPER_XMPP_ID); 
-        
+        auction.hasReceivedJoinRequestFrom(ApplicationRunner.SNIPER_XMPP_ID);
+
         auction.announceClosed();
         application.showsSniperHasLostAuction();
 
@@ -27,7 +27,7 @@ public class AuctionSniperEndToEndTest {
         auction.startSellingItem();
 
         application.startBiddingIn(auction);
-        auction.hasReceivedJoinRequestFromSniper(ApplicationRunner.SNIPER_XMPP_ID);
+        auction.hasReceivedJoinRequestFrom(ApplicationRunner.SNIPER_XMPP_ID);
 
         auction.reportPrice(1000, 98, "other bidder");
         application.hasShownSniperIsBidding(); // Check that its label text is "Bidding", but "Joining"
@@ -39,12 +39,12 @@ public class AuctionSniperEndToEndTest {
     }
 
     @Ignore
-    @Test 
+    @Test
     public void sniperWinsAnAuctionByBiddingHigher() throws InterruptedException, XMPPException {
         auction.startSellingItem();
 
         application.startBiddingIn(auction);
-        auction.hasReceivedJoinRequestFromSniper(ApplicationRunner.SNIPER_XMPP_ID);
+        auction.hasReceivedJoinRequestFrom(ApplicationRunner.SNIPER_XMPP_ID);
 
         auction.reportPrice(1000, 98, "other bidder");
         application.hasShownSniperIsBidding();
