@@ -64,12 +64,18 @@ public class FakeAuctionServer { // This is Auction.
         assertThat(currentChat.getParticipant(), equalTo(sniperId));
     }
     
-    public void reportPrice(int price, int increment, String bidder)
+	
+	public void reportPrice(int price, int increment, String bidder)
     throws XMPPException {
         currentChat.sendMessage(
-            String.format("SOLVersion: 1.1; Event: PRICE; "
-            + "CurrentPrice: %d; Increment: %d; Bidder: %s;",
-            price, increment, bidder));
+			// This works 
+			String.format("SOLVersion: 1.1; Event: PRICE; "
+			+ "CurrentPrice: %d; Increment: %d; Bidder: %s;",
+			price, increment, bidder));
+
+			// This must not work**
+			// String.format("SOLVersion: 1.1; Event: PRICE; CurrentPrice: %d; Increment: %d; Bidder: %s; ", 
+			// price, increment, bidder)); (x)**
     }
         
         
