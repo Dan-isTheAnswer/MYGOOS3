@@ -70,7 +70,7 @@ public class FakeAuctionServer {
 		assertThat(currentChat.getParticipant(), equalTo(sniperId));
 	}
 
-	public void sendInvalidMEssageContaining(String brokenMessage) throws XMPPException {
+	public void sendInvalidMessageContaining(String brokenMessage) throws XMPPException {
 		currentChat.sendMessage(brokenMessage);
 	}
 	

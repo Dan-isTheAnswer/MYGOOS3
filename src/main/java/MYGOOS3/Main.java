@@ -58,10 +58,12 @@ public class Main {
         disconnectWhenUICloses(connection);
         final Chat chat = connection.getChatManager().createChat(auctionId(itemId, connection), null);
         notToBeGCd = chat;
-        chat.sendMessage(JOIN_COMMAND_FORMAT);
+        // chat.sendMessage(JOIN_COMMAND_FORMAT);
 
         Auction auction = new XMPPAuction(chat);
-        chat.addMessageListener(new AuctionMessageTranslator(connection.getUser(), new AuctionSniper(auction, new SniperStateDisplayer())));
+        chat.addMessageListener(new AuctionMessageTranslator(
+                                connection.getUser(), 
+                                new AuctionSniper(auction, new SniperStateDisplayer())));
         auction.join();
     }
 

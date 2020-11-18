@@ -31,7 +31,7 @@ public class AuctionMessageTranslator implements MessageListener {
     }
 
     private static class AuctionEvent {
-        private final Map<String, String> fields = new HashMap<>();
+        private final Map<String, String> fields = new HashMap<String, String>();
 
         String type() {
             return get("Event");

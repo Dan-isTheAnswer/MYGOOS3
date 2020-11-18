@@ -11,7 +11,6 @@ import MYGOOS3.myannotations.TellMe;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class AuctionSniperDriver extends JFrameDriver {
-    @SuppressWarnings("unchecked")
     public AuctionSniperDriver(int timeoutMillis) {
         super(new GesturePerformer(), JFrameDriver.topLevelFrame(
                 named(Main.MAIN_WINDOW_NAME),
@@ -20,7 +19,6 @@ public class AuctionSniperDriver extends JFrameDriver {
     }
 
     @TellMe
-    @SuppressWarnings("unchecked")
     public void showsSniperStatus(String statusText) {
         new JLabelDriver(this, named(Main.SNIPER_STATUS_NAME)).hasText(equalTo(statusText));
     }
