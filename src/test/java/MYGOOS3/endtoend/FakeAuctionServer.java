@@ -73,7 +73,9 @@ public class FakeAuctionServer { // This is Auction.
 			+ "CurrentPrice: %d; Increment: %d; Bidder: %s;",
 			price, increment, bidder));
 
-			// This must not work**
+			// This must not work** "... Bidder: %s;" vs "... Bidder: %s(white space);"
+			// Because of ArrayIndexOutOfBoundException happend when splitting white space with ":".
+			// Please refer to SplitExample.java in Notes folder. 
 			// String.format("SOLVersion: 1.1; Event: PRICE; CurrentPrice: %d; Increment: %d; Bidder: %s; ", 
 			// price, increment, bidder)); (x)**
     }
