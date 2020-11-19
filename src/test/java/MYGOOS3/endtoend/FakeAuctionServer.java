@@ -73,7 +73,7 @@ public class FakeAuctionServer { // This is Auction.
 			+ "CurrentPrice: %d; Increment: %d; Bidder: %s;",
 			price, increment, bidder));
 
-			// This must not work**
+			// This must not work** "... Bidder: %s;" vs "... Bidder: %s(white space);"
 			// String.format("SOLVersion: 1.1; Event: PRICE; CurrentPrice: %d; Increment: %d; Bidder: %s; ", 
 			// price, increment, bidder)); (x)**
     }
